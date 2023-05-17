@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         if (isBartShowing) {
             homerImageView.setScaleX(0.5f);
             bartImageView.animate().alpha(0.0f).setDuration(1000); // alpha = gorunulebilirlik
-            homerImageView.animate().alpha(1.0f).setDuration(1000);
+            homerImageView.animate().alpha(1.0f).scaleX(1f).setDuration(1000);
             homerImageView.animate().scaleX(1f).setDuration(1000); // scale = buyutup kucultme
             isBartShowing = false;
         } else {
