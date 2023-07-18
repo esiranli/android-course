@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">TimerDemo</string>
+    <string name="go_button_title">GO!</string>
+    <string name="stop_button_title">STOP!</string>
+<!--    <string name="time_string_format">"%02d:%02d"</string>-->
+</resources>

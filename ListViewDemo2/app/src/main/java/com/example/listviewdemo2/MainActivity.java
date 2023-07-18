@@ -21,11 +21,14 @@ import java.util.Arrays;
 public class MainActivity extends AppCompatActivity {
 
     private ListView myListView;
-    private ArrayAdapter<String> adapter;
-    private FruitListAdapter fruitListAdapter;
+
     private ArrayList<String> items;
+    private ArrayAdapter<String> adapter;
+
     private ArrayList<String> fruitNames;
     private ArrayList<Integer> imageNames;
+    private FruitListAdapter fruitListAdapter;
+
     private int lastIndex;
 
     @SuppressLint("MissingInflatedId")
@@ -47,11 +50,25 @@ public class MainActivity extends AppCompatActivity {
         // This creates adapter to show each item in the list on a layout named simple_list_item_1
 //        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, items);
 //        myListView.setAdapter(adapter);
-
+        
         fruitNames = new ArrayList<String>(Arrays.asList("Ananas", "Apple", "Banana", "Grapes", "Pomegranate"));
         imageNames = new ArrayList<Integer>(Arrays.asList(R.drawable.ananas, R.drawable.apple, R.drawable.banana, R.drawable.grapes, R.drawable.pomegranate));
         lastIndex = fruitNames.size();
-        fruitListAdapter = new FruitListAdapter(this, fruitNames, imageNames);
+        fruitListAdapter = new FruitListAdapter(this, fruitNames, imageNames, (view, position) -> {
+            // This removes the fruit names and image names from the corresponding list
+            String removedFruit = fruitNames.remove(position);
+            int removedFruitImage = imageNames.remove(position);
+
+            //This adds removed item to end of the list
+//            fruitNames.add(removedFruit);
+//            imageNames.add(removedFruitImage);
+
+            // This adds removed item to first index of the list
+//            fruitNames.add(0, removedFruit);
+//            imageNames.add(0, removedFruitImage);
+            fruitListAdapter.notifyDataSetChanged();
+            myListView.smoothScrollToPosition(lastIndex + 1);
+        });
         myListView.setAdapter(fruitListAdapter);
 
         myListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -89,3 +106,4 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 }
+

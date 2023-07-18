@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -14,12 +15,14 @@ import java.util.ArrayList;
 public class FruitListAdapter extends BaseAdapter {
     private ArrayList<String> fruitNames;
     private ArrayList<Integer> imageNames;
+    private FruitListItemDeleteButtonClickListener onDeleteButtonClickListener;
     private Context context;
 
-    FruitListAdapter(Context context, ArrayList<String> fruitNames, ArrayList<Integer> imageNames) {
+    FruitListAdapter(Context context, ArrayList<String> fruitNames, ArrayList<Integer> imageNames, FruitListItemDeleteButtonClickListener onDeleteButtonClickListener) {
         this.context = context;
         this.fruitNames = fruitNames;
         this.imageNames = imageNames;
+        this.onDeleteButtonClickListener = onDeleteButtonClickListener;
     }
 
     @Override
@@ -43,9 +46,16 @@ public class FruitListAdapter extends BaseAdapter {
         @SuppressLint("ViewHolder") View fruitItemView = LayoutInflater.from(context).inflate(R.layout.fruit_list_item, null);
         ImageView imageView = fruitItemView.findViewById(R.id.imageView);
         imageView.setImageResource(imageNames.get(position));
-        imageView.animate().alpha(0.5f);
+//        imageView.animate().alpha(0.5f);
         TextView textView = fruitItemView.findViewById(R.id.textView);
         textView.setText(fruitNames.get(position));
+        ImageButton deleteButton = fruitItemView.findViewById(R.id.deleteButton);
+        deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onDeleteButtonClickListener.onDeleteButtonClick(v, position);
+            }
+        });
         return fruitItemView;
     }
 }
