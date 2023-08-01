@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         // This creates adapter to show each item in the list on a layout named simple_list_item_1
 //        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, items);
 //        myListView.setAdapter(adapter);
-        
+
         fruitNames = new ArrayList<String>(Arrays.asList("Ananas", "Apple", "Banana", "Grapes", "Pomegranate"));
         imageNames = new ArrayList<Integer>(Arrays.asList(R.drawable.ananas, R.drawable.apple, R.drawable.banana, R.drawable.grapes, R.drawable.pomegranate));
         lastIndex = fruitNames.size();

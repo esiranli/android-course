@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         timerTextView = findViewById(R.id.timerTextView);
-        timerTextView.setText(convertSecondsToTimeString(INITIAL_DURATION));
+        updateTimerText(INITIAL_DURATION);
 
         goButton = findViewById(R.id.goButton);
         goButton.setOnClickListener(new View.OnClickListener() {
